@@ -79,8 +79,8 @@
 				<target state="translated">Alle Klicks</target>
 			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.overallclicksperclicker">
-				<source>Clicks per clicker</source>
-				<target state="translated">Klicks je Klickendem</target>
+				<source>⌀ clicks</source>
+				<target state="translated">⌀ Klicks</target>
 			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.overallunsubscriberate">
 				<source>Unsubscriberate</source>
@@ -103,8 +103,8 @@
 				<target state="translated">Klickrate</target>
 			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.clicksperclicker">
-				<source>Clicks/clicker</source>
-				<target state="translated">Klicks/Klickendem</target>
+				<source>⌀ clicks</source>
+				<target state="translated">⌀ Klicks</target>
 			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.unsubscriberate">
 				<source>Unsubscriberate</source>

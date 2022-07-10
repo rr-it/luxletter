@@ -60,7 +60,7 @@
 				<source>All clicks</source>
 			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.overallclicksperclicker">
-				<source>Clicks per clicker</source>
+				<source>⌀ clicks</source>
 			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.overallunsubscriberate">
 				<source>Unsubscriberate</source>
@@ -78,7 +78,7 @@
 				<source>Clickrate</source>
 			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.clicksperclicker">
-				<source>Clicks/clicker</source>
+				<source>⌀ clicks</source>
 			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.unsubscriberate">
 				<source>Unsubscriberate</source>
