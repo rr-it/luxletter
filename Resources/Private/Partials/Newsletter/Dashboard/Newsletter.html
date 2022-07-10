@@ -7,24 +7,35 @@
 	</div>
 	<div class="panel-body">
 		<table class="table">
+            <tr>
+                <td></td>
+                <th scope="col">
+                    <f:translate key="module.newsletter.dashboard.label.openrate">Open rate</f:translate>
+                </th>
+                <th scope="col">
+                    <f:translate key="module.newsletter.dashboard.label.clickrate">Click rate</f:translate>
+                </th>
+                <th scope="col">
+                    <f:translate key="module.newsletter.dashboard.label.clicksperclicker">Clicks/clicker</f:translate>
+                </th>
+                <th scope="col">
+                    <f:translate key="module.newsletter.dashboard.label.unsubscriberate">Unsubscribe rate</f:translate>
+                </th>
+            </tr>
 			<f:for each="{newsletters}" as="newsletter">
 				<tr>
 					<th scope="row">{newsletter.title}</th>
 					<td>
 						<luxletter:format.percent number="{newsletter.openRate}">35 %</luxletter:format.percent>
-						<f:translate key="module.newsletter.dashboard.label.openrate">Open rate</f:translate>
 					</td>
 					<td>
 						<luxletter:format.percent number="{newsletter.clickRate}">11 %</luxletter:format.percent>
-						<f:translate key="module.newsletter.dashboard.label.clickrate">Click rate</f:translate>
 					</td>
 					<td>
                         <f:format.number decimals="2" decimalSeparator="," thousandsSeparator="">{newsletter.clicksPerClicker}</f:format.number>
-						<f:translate key="module.newsletter.dashboard.label.clicksperclicker">Clicks/clicker</f:translate>
 					</td>
 					<td>
 						<luxletter:format.percent number="{newsletter.unsubscribeRate}">1.3 %</luxletter:format.percent>
-						<f:translate key="module.newsletter.dashboard.label.unsubscriberate">Unsubscribe rate</f:translate>
 					</td>
 				</tr>
 			</f:for>
