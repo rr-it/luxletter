@@ -56,6 +56,7 @@ label {
     @media screen and (min-width: 992px) {
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
     }
 }
 
@@ -269,6 +270,8 @@ label {
 
         .luxletter-panel-body-text--addition {
             font-size: 1.5vw;
+            line-height: 2vw;
+            padding-top: 0.7vw;
         }
     }
 }

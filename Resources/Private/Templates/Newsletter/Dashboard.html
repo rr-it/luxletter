@@ -6,16 +6,19 @@
 
     <div class="luxletter-dashboard">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-1">
                 <f:render partial="Newsletter/Dashboard/OverallReceivers" arguments="{_all}" optional="1" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <f:render partial="Newsletter/Dashboard/OverallOpenrate" arguments="{_all}" optional="1" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <f:render partial="Newsletter/Dashboard/OverallClickrate" arguments="{_all}" optional="1" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-1">
+                <f:render partial="Newsletter/Dashboard/OverallClicksPerClicker" arguments="{_all}" optional="1" />
+            </div>
+            <div class="col-md-2">
                 <f:render partial="Newsletter/Dashboard/OverallUnsubscriberate" arguments="{_all}" optional="1" />
             </div>
         </div>
