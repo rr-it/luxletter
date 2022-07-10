@@ -167,6 +167,21 @@ class LogRepository extends AbstractRepository
      * @return float
      * @throws DBALException
      * @throws Exception
+     */
+    public function getOverallClicksPerClicker(): float
+    {
+        $openingsByClickers = $this->getOpeningsByClickers();
+        $overallClicks = $this->getOverallClicks();
+        if ($openingsByClickers > 0) {
+            return $overallClicks / $openingsByClickers;
+        }
+        return 0.0;
+    }
+
+    /**
+     * @return float
+     * @throws DBALException
+     * @throws Exception
      * @throws ExceptionDbal
      */
     public function getOverallUnsubscribeRate(): float

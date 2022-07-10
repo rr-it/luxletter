@@ -78,6 +78,10 @@
 				<source>All clicks</source>
 				<target state="translated">Alle Klicks</target>
 			</trans-unit>
+			<trans-unit id="module.newsletter.dashboard.label.overallclicksperclicker">
+				<source>Clicks per clicker</source>
+				<target state="translated">Klicks je Klickendem</target>
+			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.overallunsubscriberate">
 				<source>Unsubscriberate</source>
 				<target state="translated">Abmelderate</target>
