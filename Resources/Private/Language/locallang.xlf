@@ -77,6 +77,9 @@
 			<trans-unit id="module.newsletter.dashboard.label.clickrate">
 				<source>Clickrate</source>
 			</trans-unit>
+			<trans-unit id="module.newsletter.dashboard.label.clicksperclicker">
+				<source>Clicks/clicker</source>
+			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.unsubscriberate">
 				<source>Unsubscriberate</source>
 			</trans-unit>

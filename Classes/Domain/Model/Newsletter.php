@@ -97,6 +97,11 @@ class Newsletter extends AbstractEntity
     /**
      * @var int
      */
+    protected $clicks = 0;
+
+    /**
+     * @var int
+     */
     protected $unsubscribers = 0;
 
     /**
@@ -408,6 +413,21 @@ class Newsletter extends AbstractEntity
      * @throws DBALException
      * @throws ExceptionDbalDriver
      */
+    public function getClicks(): int
+    {
+        if ($this->clicks === 0) {
+            $logRepository = GeneralUtility::makeInstance(LogRepository::class);
+            $clicks = count($logRepository->findByNewsletterAndStatus($this, [Log::STATUS_LINKOPENING], false));
+            $this->clicks = $clicks;
+        }
+        return $this->clicks;
+    }
+
+    /**
+     * @return int
+     * @throws DBALException
+     * @throws ExceptionDbalDriver
+     */
     public function getUnsubscribers(): int
     {
         if ($this->unsubscribers === 0) {
@@ -444,6 +464,21 @@ class Newsletter extends AbstractEntity
         $clickers = $this->getClickers();
         if ($openers > 0) {
             return $clickers / $openers;
+        }
+        return 0.0;
+    }
+
+    /**
+     * @return float
+     * @throws DBALException
+     * @throws ExceptionDbalDriver
+     */
+    public function getClicksPerClicker(): float
+    {
+        $clickers = $this->getClickers();
+        $clicks = $this->getClicks();
+        if ($clickers > 0) {
+            return $clicks / $clickers;
         }
         return 0.0;
     }

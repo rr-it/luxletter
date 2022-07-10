@@ -102,6 +102,10 @@
 				<source>Clickrate</source>
 				<target state="translated">Klickrate</target>
 			</trans-unit>
+			<trans-unit id="module.newsletter.dashboard.label.clicksperclicker">
+				<source>Clicks/clicker</source>
+				<target state="translated">Klicks/Klickendem</target>
+			</trans-unit>
 			<trans-unit id="module.newsletter.dashboard.label.unsubscriberate">
 				<source>Unsubscriberate</source>
 				<target state="translated">Abmelderate</target>
