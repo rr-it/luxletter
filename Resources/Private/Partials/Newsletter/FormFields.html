@@ -9,6 +9,7 @@
                     class="form-control input-lg"
                       property="title"
                       id="title"
+                      value="{luxletter:backend.pageTitle()}"
                       placeholder="Newsletter Product A 2020/01"
                       data="{luxletter-mandatory:'1'}"
                       required="required"/>
@@ -147,6 +148,7 @@
                             class="form-control input-lg"
                             property="origin"
                             id="origin"
+                            value="{luxletter:backend.pageId()}"
                             placeholder="https://www.yourdomain/newsletter/2020-01/"
                             data="{luxletter-mandatory:'1',luxletter-wizardpreviewevent:'newsletter'}"
                             required="required"/>
@@ -172,6 +174,7 @@
                             class="form-control input-lg"
                             property="subject"
                             id="subject"
+                            value="Newsletter [{luxletter:backend.pageTitle()}]"
                             placeholder="Your new newsletter for product A (2022/01)"
                             data="{luxletter-mandatory:'1',luxletter-testmail:'subject'}"
                             required="required"/>
