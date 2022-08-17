@@ -2,7 +2,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
@@ -19,7 +19,7 @@ gulp.task('css', function() {
 	var config = {};
 	config.outputStyle = 'compressed';
 
-	gulp.src(__dirname + '/../Sass/*.scss')
+	return gulp.src(__dirname + '/../Sass/*.scss')
 		.pipe(plumber())
 		.pipe(sass(config))
 		.pipe(rename({
@@ -29,7 +29,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-	gulp.src([__dirname + '/../JavaScript/*.js'])
+	return gulp.src([__dirname + '/../JavaScript/*.js'])
 		.pipe(plumber())
 		.pipe(uglify())
 		.pipe(rename({
@@ -42,6 +42,6 @@ gulp.task('js', function() {
  *         Watch Tasks
  *********************************/
 gulp.task('default', function() {
-	gulp.watch(__dirname + '/../Sass/*.scss', ['css']);
-	gulp.watch(__dirname + '/../JavaScript/*.js', ['js']);
+  gulp.watch(__dirname + '/../Sass/*.scss', gulp.series('css'));
+  gulp.watch(__dirname + '/../JavaScript/*.js', gulp.series('js'));
 });
