@@ -2,8 +2,6 @@
 declare(strict_types = 1);
 namespace In2code\Luxletter\Domain\Service\BodytextManipulation\ImageEmbedding;
 
-use DOMDocument;
-use DOMElement;
 use In2code\Luxletter\Exception\MisconfigurationException;
 use In2code\Luxletter\Utility\StringUtility;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -21,19 +19,12 @@ class Execution extends AbstractEmbedding implements SingletonInterface
     protected $content = '';
 
     /**
-     * @var DOMDocument
-     */
-    protected $dom = null;
-
-    /**
      * @param string $content
      * @return $this
      */
     public function setBodytext(string $content): self
     {
         $this->content = $content;
-        $this->dom = new DOMDocument;
-        @$this->dom->loadHTML($this->content);
         return $this;
     }
 
@@ -55,11 +46,11 @@ class Execution extends AbstractEmbedding implements SingletonInterface
         $this->checkInitialization();
 
         $images = [];
-        $imageTags = $this->dom->getElementsByTagName('img');
-        /** @var DOMElement $imageTag */
+        $imageSources = [];
+        preg_match_all('(<img\s+[^>]*src\s*=\s*(?:([\'"])(.+?)\\1|([^>\s]+)))i', $this->content, $imageSources);
+        $imageSources = array_filter(array_unique(array_merge($imageSources[2], $imageSources[3])));
         $iterator = 1;
-        foreach ($imageTags as $imageTag) {
-            $src = $imageTag->getAttribute('src');
+        foreach ($imageSources as $src) {
             if (StringUtility::isAbsoluteImageUrl($src)) {
                 $pathAndFilename = $this->getNewImagePathAndFilename($src);
                 if (file_exists($pathAndFilename)) {
@@ -81,20 +72,20 @@ class Execution extends AbstractEmbedding implements SingletonInterface
     {
         $this->checkInitialization();
 
-        $imageTags = $this->dom->getElementsByTagName('img');
-        /** @var DOMElement $imageTag */
+        $imageSources = [];
+        preg_match_all('(<img\s+[^>]*src\s*=\s*(?:([\'"])(.+?)\\1|([^>\s]+)))i', $this->content, $imageSources);
+        $imageSources = array_filter(array_unique(array_merge($imageSources[2], $imageSources[3])));
         $iterator = 1;
-        foreach ($imageTags as $imageTag) {
-            $src = $imageTag->getAttribute('src');
+        foreach ($imageSources as $src) {
             if (StringUtility::isAbsoluteImageUrl($src)) {
                 $pathAndFilename = $this->getNewImagePathAndFilename($src);
                 if (file_exists($pathAndFilename)) {
-                    $imageTag->setAttribute('src', 'cid:' . $this->getEmbedNameFromIterator($iterator));
+                    $this->content = str_replace($src, 'cid:' . $this->getEmbedNameFromIterator($iterator), $this->content);
                     $iterator++;
                 }
             }
         }
-        return $this->dom->saveHTML();
+        return $this->content;
     }
 
     /**
@@ -113,9 +104,6 @@ class Execution extends AbstractEmbedding implements SingletonInterface
     {
         if ($this->content === '') {
             throw new UnexpectedValueException('No bodytext given for image embedding', 1637319117);
-        }
-        if ($this->dom === null) {
-            throw new UnexpectedValueException('Dom property not initialized', 1637319084);
         }
     }
 }

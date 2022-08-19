@@ -2,8 +2,6 @@
 declare(strict_types = 1);
 namespace In2code\Luxletter\Domain\Service\BodytextManipulation\ImageEmbedding;
 
-use DOMDocument;
-use DOMElement;
 use In2code\Luxletter\Exception\ApiConnectionException;
 use In2code\Luxletter\Exception\MisconfigurationException;
 use In2code\Luxletter\Utility\FileUtility;
@@ -40,12 +38,10 @@ class Preparation extends AbstractEmbedding
     public function storeImages(string $bodytext): void
     {
         if ($this->isActive()) {
-            $dom = new DOMDocument();
-            @$dom->loadHTML($bodytext);
-            $imageTags = $dom->getElementsByTagName('img');
-            /** @var DOMElement $imageTag */
-            foreach ($imageTags as $imageTag) {
-                $src = $imageTag->getAttribute('src');
+            $imageSources = [];
+            preg_match_all('(<img\s+[^>]*src\s*=\s*(?:([\'"])(.+?)\\1|([^>\s]+)))i', $bodytext, $imageSources);
+            $imageSources = array_filter(array_unique(array_merge($imageSources[2], $imageSources[3])));
+            foreach ($imageSources as $src) {
                 if (StringUtility::isAbsoluteImageUrl($src)) {
                     $this->storeImage($src);
                 }
