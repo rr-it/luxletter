@@ -84,7 +84,16 @@ class SendMail
                 $this
             ));
             if ($event->isSend() === true) {
-                return $mailMessage->send();
+                try {
+                    return $mailMessage->send();
+                } catch (\Symfony\Component\Mailer\Exception\TransportExceptionInterface $e) {
+                    // some error prevented the email sending
+                    $debug = $e->getDebug();
+                    if (mb_strpos($debug, "550 proper dns entries") !== false) {
+                        // non-existent recipient domain
+                        return true;
+                    }
+                }
             }
         }
         return false;
